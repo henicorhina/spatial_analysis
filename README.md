@@ -38,4 +38,6 @@ PypeR paper: https://www.jstatsoft.org/article/view/v035c02/v35c02.pdf
 License
 ----------
 
-This code is distributed under a GNU General Public License v3.0
+This code is distributed under a GNU General Public License v3.0.
+
+Please refer to the websites for Mantel and PypeR for their respective licenses.
