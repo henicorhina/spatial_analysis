@@ -20,6 +20,10 @@ Requirements
 - Mantel
 - PypeR
 
+I am working to write an AMOVA script for python, but until then please install the 'ade4' package in your R console with the following command:
+```r
+install.packages('ade4')
+```
 
 References
 ----------
