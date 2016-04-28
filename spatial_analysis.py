@@ -6,12 +6,16 @@ Oscar Johnson 15 April 2016
 
 Copyright Oscar Johnson 2016
 
+input directory must contain three .csv files:
+genetic distance must have the  file name starting with 'gen'
+geographic distance must have the  file name starting with 'geo'
+control (for partial mantel) must have the file name starting with 'control'
+
+
+ideas:
 after running a cluster analysis (AMOVA?)
 iteratively compute all possible permutations of
 comparisons between populations
-
-partial mantel implementation within 'import Mantel'?
-if not, could edit the code to allow for partial
 """
 
 
@@ -138,20 +142,21 @@ def AMOVA():
     run AMOVA test
     """
 
+
 def plot_regression(x, y, d):
     """
     plot regression of two matrices x and y
-    and degrees of freedom
-    from http://stackoverflow.com/questions/7941226/add-line-based-on-slope-and-intercept-in-matplotlib
+    and degrees of freedom (d)
+    from http://stackoverflow.com/questions/7941226/
     """
     # Find the slope and intercept of the best fit line
-    slope,intercept = np.polyfit(x, y, d)
-    
+    slope, intercept = np.polyfit(x, y, d)
+
     # Create a list of values in the best fit line
     ablineValues = []
     for i in x:
-      ablineValues.append(slope * i + intercept)
-    
+        ablineValues.append(slope * i + intercept)
+
     # Plot the best fit line over the actual values
     plt.plot(x, y, '--')
     plt.plot(x, ablineValues, 'b')
