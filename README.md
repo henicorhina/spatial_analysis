@@ -6,9 +6,12 @@ Analysis of spatial and genetic distance data in Python. Integrates Mantel tests
 Description
 ----------
 
-As currently built, this script takes condensed matrices of distance data and genetic data. 
+As currently built, this script takes non-redundant matrices of distance data and genetic data. Or, if running a partial Mantel test, a third matrix of potentially correlated data.
 
-Or, if running a partial Mantel test, a third matrix of potentially correlated data.
+These matrices should be provided in the user-provided input directory as .csv files, as follows:
+- The genetic distance file must have the  file name starting with 'gen'
+- The geographic distance file must have the  file name starting with 'geo'
+- The control data (for partial mantel) file must have the file name starting with 'control'
 
 
 Requirements
@@ -18,26 +21,24 @@ Requirements
 - NumPy
 - SciPy
 - Mantel
-- PypeR
 
 I am working to write an AMOVA script for python, but until then please install the 'ade4' package in your R console with the following command:
 ```r
 install.packages('ade4')
 ```
 
+
 References
 ----------
 
-Although I have included the code for both Mantel and PypeR in this repository, please refer to the respective download pages for both of those software packages for updates.
+Although I have included the code for Mantel in this repository, please refer to the download page for that software package for updates.
 
 Mantel: https://github.com/jwcarr/MantelTest
 
-PypeR: https://sourceforge.net/projects/rinpy/
-PypeR paper: https://www.jstatsoft.org/article/view/v035c02/v35c02.pdf
 
 License
 ----------
 
 This code is distributed under a GNU General Public License v3.0.
 
-Please refer to the websites for Mantel and PypeR for their respective licenses.
+Please refer to the website for Mantel for that license.
