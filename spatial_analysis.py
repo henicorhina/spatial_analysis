@@ -158,7 +158,7 @@ def plot_regression(x, y, d):
         ablineValues.append(slope * i + intercept)
 
     # Plot the best fit line over the actual values
-    plt.plot(x, y, '--')
+    plt.plot(x, y, '.')
     plt.plot(x, ablineValues, 'b')
     plt.title(slope)
     plt.show()
