@@ -22,7 +22,9 @@ Requirements
 - SciPy
 - Mantel
 
-I am working to write an AMOVA script for python, but until then please install the 'ade4' package in your R console with the following command:
+This program currently works with Linux operating systems, but has not yet been tested on Windows.
+
+I am working to write an AMOVA script for python, but until then please install the 'ade4' package in your R console with the following command (I haven't gotten this to work with my script, so ignore this for now):
 ```r
 install.packages('ade4')
 ```
@@ -35,9 +37,9 @@ Input commands
 - --sim: enter 'y' to simulate data, or 'n' to skip
 - --m: enter 'f' to perform a full mantel test, 'p' to perform a partial mantel test, or 'n' to skip
 
-Note: if you are running a full mantel test, you only need two input data files, a 'gen' and a 'geo' file. for the partial mantel test, you need a third input file with a name that starts with 'control' 
+Note: if you are running a full mantel test, you only need two input data files, a 'gen' and a 'geo' file. For the partial mantel test, you need a third input file with a name that starts with 'control'. Example input files are provided in the spatial_analysis repository.
 
-Example of input commands:
+Example of input commands for Linux:
 
 ```
 python spatial_analysis.py --in_dir /Users/home/spatial_analysis/ --out_dir /Users/home/spatial_analysis/results/ --sim n --m p
