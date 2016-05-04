@@ -30,14 +30,14 @@ install.packages('ade4')
 Input commands
 --------------
 
---in_dir: input directory containing your 2 or 3 .csv data files
---out_dir: where you want your results files to go
---sim: enter 'y' to simulate data, or 'n' to skip
---m: enter 'f' to perform a full mantel test, 'p' to perform a partial mantel test, or 'n' to skip
+- --in_dir: input directory containing your 2 or 3 .csv data files
+- --out_dir: where you want your results files to go
+- --sim: enter 'y' to simulate data, or 'n' to skip
+- --m: enter 'f' to perform a full mantel test, 'p' to perform a partial mantel test, or 'n' to skip
 
 Note: if you are running a full mantel test, you only need two input data files, a 'gen' and a 'geo' file. for the partial mantel test, you need a third input file with a name that starts with 'control' 
 
-example of input commands:
+Example of input commands:
 
 ```
 python spatial_analysis.py --in_dir /Users/home/spatial_analysis/ --out_dir /Users/home/spatial_analysis/results/ --sim n --m f
