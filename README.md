@@ -40,7 +40,7 @@ Note: if you are running a full mantel test, you only need two input data files,
 Example of input commands:
 
 ```
-python spatial_analysis.py --in_dir /Users/home/spatial_analysis/ --out_dir /Users/home/spatial_analysis/results/ --sim n --m f
+python spatial_analysis.py --in_dir /Users/home/spatial_analysis/ --out_dir /Users/home/spatial_analysis/results/ --sim n --m p
 ```
 
 

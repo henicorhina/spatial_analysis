@@ -223,10 +223,14 @@ def plot_regression(x, y, d):
     plt.show()
 
 
-def writer(args, array):
-    """takes numpy array and writes to .csv file"""
+def writer(args, data):
+    """takes mantel results and writes to file"""
     os.chdir(os.path.abspath(args.out_dir))
-    np.savetxt("result.csv", array, delimiter=",")
+    # np.savetxt("result.csv", array, delimiter=",")
+    with open("results.txt", 'w') as out_file:
+        out_file.write('verdical correlation {}'.format(str(data[0])))
+        out_file.write('\np-value {}'.format(str(data[1])))
+        out_file.write('\nz-score {}'.format(str(data[2])))
 
 
 def main():
@@ -252,11 +256,13 @@ def main():
         print('verdical correlation of full mantel: {}'.format(m[0]))
         print('p-value of full mantel: {}'.format(m[1]))
         print('z-score of full mantel: {}'.format(m[2]))
+        writer(args, m)
     elif args.m.lower() == 'p':
         p = p_mantel(geo_file, gen_file, control_file)
         print('r2 of partial mantel: {}'.format(p[0]))
         print('p-value of partial mantel: {}'.format(p[1]))
         print('z-score of partial mantel: {}'.format(p[2]))
+        writer(args, p)
     elif args.m.lower() == 'n':
         pass
 
