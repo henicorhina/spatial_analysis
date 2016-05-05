@@ -280,12 +280,13 @@ def main():
     if len(f3) != 0:
         control_file = np.array(read_csv(f3[0], header=None))
     # pdb.set_trace()
-    
+
     # run clustering algorithm
     check = cluster_data(gen_file)
     if len(set(check)) > 1:
+        print("your data are clustering into more than one population")
         print('your population clusters are: {}'.format(check))
-        sys.exit("your data are clustering into more than one population")
+        sys.exit("divide your data based on clusters and re-run")
     elif len(set(check)) == 1:
         print('your data are clustering into one population, all is well')
 
