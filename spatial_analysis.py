@@ -120,8 +120,6 @@ def matrix_man_2(x1):
     for val in xlist:
         if val < 0.000001:
             xlist.remove(val)
-    #while 0.0 in xlist:
-    #    xlist.remove(0.0)
     return(xlist)
 
 
@@ -145,7 +143,7 @@ def cluster_data(gen_file):
     clusters input data and decides whether
     to re-run each cluster in Mantel
     only works with full Manel test
-    """    
+    """
     res = cluster.hierarchy.fclusterdata(np.array(gen_file), 2)
     return(res)
 
