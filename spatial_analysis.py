@@ -20,6 +20,7 @@ comparisons between populations
 
 
 import os
+import sys
 import shlex
 import subprocess
 # import csv
@@ -28,6 +29,7 @@ import glob
 import argparse
 import numpy as np
 from pandas import read_csv
+from scipy import cluster
 import matplotlib.pyplot as plt
 # from scipy.stats import linregress
 
@@ -105,11 +107,30 @@ def matrix_man(x1, y1):
     return(xlist, ylist)
 
 
+def matrix_man_2(x1):
+    """
+    manipulate full data matrix to work with Mantel.test
+    this function can take a single data matrix instead of two
+    also works with residual matrices where the off-values aren't exactly zero
+    """
+    xlist = []
+    for v in x1:
+        xlist.extend(list(v))
+    # pdb.set_trace()
+    for val in xlist:
+        if val < 0.000001:
+            xlist.remove(val)
+    #while 0.0 in xlist:
+    #    xlist.remove(0.0)
+    return(xlist)
+
+
 def AMOVA(x, y):
     """
     run AMOVA test through arlecore
+    this is not working
     """
-    command = 'arlecore -f {} -r {} -o {} -s 1'.format(x, y)
+    command = 'arlecore -args {}'.format(x, y)
     cmd = shlex.split(command)
     process = subprocess.run(
         cmd,
@@ -117,6 +138,16 @@ def AMOVA(x, y):
         stderr=subprocess.PIPE,
         universal_newlines=True)
     return(process)
+
+
+def cluster_data(gen_file):
+    """
+    clusters input data and decides whether
+    to re-run each cluster in Mantel
+    only works with full Manel test
+    """    
+    res = cluster.hierarchy.fclusterdata(np.array(gen_file), 2)
+    return(res)
 
 
 def sim():
@@ -249,6 +280,14 @@ def main():
     if len(f3) != 0:
         control_file = np.array(read_csv(f3[0], header=None))
     # pdb.set_trace()
+    
+    # run clustering algorithm
+    check = cluster_data(gen_file)
+    if len(set(check)) > 1:
+        print('your population clusters are: {}'.format(check))
+        sys.exit("your data are clustering into more than one population")
+    elif len(set(check)) == 1:
+        print('your data are clustering into one population, all is well')
 
     # do stuff with files
     if args.m.lower() == 'f':
@@ -257,6 +296,8 @@ def main():
         print('p-value of full mantel: {}'.format(m[1]))
         print('z-score of full mantel: {}'.format(m[2]))
         writer(args, m)
+        geo, gen = matrix_man(geo_file, gen_file)
+        plot_regression(geo, gen, 1)
     elif args.m.lower() == 'p':
         p = p_mantel(geo_file, gen_file, control_file)
         print('r2 of partial mantel: {}'.format(p[0]))
@@ -272,7 +313,8 @@ def main():
         pass
 
     # if user didn't input any commands
-    if args.sim.lower() != 'y' and args.m.lower() != 'f' and args.m.lower() != 'p':
+    low = args.m.lower()
+    if args.sim.lower() != 'y' and low != 'f' and low != 'p':
         print('you have not entered any useful commands, please try again!')
 
 if __name__ == '__main__':
